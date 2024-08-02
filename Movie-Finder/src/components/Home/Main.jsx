@@ -4,16 +4,11 @@ import TVShow from "./TVShow";
 
 function Main() {
   return (
-    <>
-      <main>
-        <Movies />
-        <TVShow />
-        <Trending />
-      </main>
-      {/* <section id="loader">
-        <div className="loader-spinner"></div>
-      </section> */}
-    </>
+    <main>
+      <Movies />
+      <TVShow />
+      <Trending />
+    </main>
   );
 }
 

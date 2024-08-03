@@ -1,10 +1,10 @@
 import Logo from "../../assets/logo.png";
 function Header() {
   return (
-    <div className="header">
+    <header>
       <div className="nav-container">
         <span id="logo">
-          <a href="index.html">
+          <a href="/">
             <img src={Logo} alt="Logo" />
           </a>
         </span>
@@ -16,7 +16,7 @@ function Header() {
           </form>
         </nav>
       </div>
-    </div>
+    </header>
   );
 }
 

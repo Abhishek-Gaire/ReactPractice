@@ -1,6 +1,8 @@
+import ExtraDetails from "./ExtraDetails";
+import Genre from "./Genre";
+
 /* eslint-disable react/prop-types */
-function DetaiContainer({ content }) {
-  console.log(content);
+function DetaiContainer({ content, type }) {
   return (
     <>
       <div className="background-img">
@@ -27,8 +29,10 @@ function DetaiContainer({ content }) {
             <span id="ratingQty">({content.vote_count})</span>
           </p>
           <section className="type-genre">
-            <div id="type" className="type"></div>
-            <div id="genre"></div>
+            <div id="type" className="type">
+              {type === "tv" ? "TV Series" : "Movie"}
+            </div>
+            <Genre genres={content.genres} />
           </section>
           <div className="overview-container">
             <h2>Overview</h2>
@@ -37,23 +41,7 @@ function DetaiContainer({ content }) {
             </p>
             <button id="readMore">Read More</button>
           </div>
-          <section className="extra-details">
-            <table id="detailTable">
-              <tr>
-                <th>Creator</th>
-                <td id="creator">&quot; N/A &quot; </td>
-              </tr>
-              <tr>
-                <th>Stars</th>
-                <td id="stars"></td>
-              </tr>
-
-              <tr id="relContainer">
-                <th>Release Date</th>
-                <td id="releaseDate">{content.release_date}</td>
-              </tr>
-            </table>
-          </section>
+          <ExtraDetails content={content} />
         </div>
       </div>
     </>

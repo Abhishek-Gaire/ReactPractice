@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import DetaiContainer from "../components/Details/DetaiContainer";
 import Recommendation from "../components/Details/Recommendation";
 import Header from "../components/helper/Header";
+
 import "../../public/details.css";
 
 const API_KEY = "api_key=8c72c95a59121aae424474da628b54d2";
@@ -34,7 +35,7 @@ function Details() {
     <>
       <Header />
       <main>
-        <DetaiContainer content={movieContent} />
+        <DetaiContainer content={movieContent} type={type} />
         <Recommendation type={type} id={id} />
       </main>
     </>

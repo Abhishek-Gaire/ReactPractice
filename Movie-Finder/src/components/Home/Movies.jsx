@@ -36,7 +36,7 @@ function Movies() {
               <i className="bx bx-chevron-right"></i>
             </button>
             {movies.map((movie) => {
-              return <MovieCard movie={movie} key={movie.id} />;
+              return <MovieCard movie={movie} key={movie.id} from={"movie"} />;
             })}
           </div>
         </section>

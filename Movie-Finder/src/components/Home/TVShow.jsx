@@ -11,22 +11,22 @@ function TVShow() {
       setShows(data.results);
     }
     fetchShows();
-  });
+  }, [url]);
   return (
     <section className="container tv">
-      <h2>Latest TVShow</h2>
+      <h2>Latest TV Show</h2>
       {/* {One Function Needed For Hover in this Div} */}
       <div className="movies-container" id="latestTVContainer">
         <button className="btn-cont left">
-          <i className="bx bx-chevron-left"></i>{" "}
+          <i className="bx bx-chevron-left"></i>
         </button>
         <button className="btn-cont right">
           <i className="bx bx-chevron-right"></i>
         </button>
+        {shows.map((show) => {
+          return <MovieCard movie={show} key={show.id} from={"tv"} />;
+        })}
       </div>
-      {shows.map((show) => {
-        return <MovieCard movie={show} key={show.id} />;
-      })}
     </section>
   );
 }

@@ -28,10 +28,12 @@ function Trending() {
         <button className="btn-cont right">
           <i className="bx bx-chevron-right"></i>
         </button>
+        {movies.map((movie) => {
+          return (
+            <MovieCard movie={movie} key={movie.id} from={movie.media_type} />
+          );
+        })}
       </div>
-      {movies.map((movie) => {
-        return <MovieCard movie={movie} key={movie.id} />;
-      })}
     </section>
   );
 }

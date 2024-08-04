@@ -1,17 +1,34 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import Logo from "../../assets/logo.png";
+
 function Header() {
+  const navigate = useNavigate();
+  const [searchItem, setSearchItem] = useState("");
+
+  function goToSearchPage(e) {
+    e.preventDefault();
+    navigate(`/search?searchItem=${searchItem}`);
+  }
+
   return (
     <header>
       <div className="nav-container">
         <span id="logo">
-          <a href="/">
+          <Link to="/">
             <img src={Logo} alt="Logo" />
-          </a>
+          </Link>
         </span>
         <nav>
-          <form>
-            <input type="text" placeholder="Search..." id="searchBar" />
-            <button type="submit" id="searchBtn" />
+          <form onSubmit={goToSearchPage}>
+            <input
+              type="text"
+              placeholder="Search..."
+              id="searchBar"
+              onChange={(e) => setSearchItem(e.target.value)}
+            />
+            <button type="submit" id="searchBtn" onClick={goToSearchPage} />
             <i className="bx bx-search"></i>
           </form>
         </nav>

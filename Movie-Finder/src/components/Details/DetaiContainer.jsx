@@ -1,8 +1,17 @@
+import { useState } from "react";
 import ExtraDetails from "./ExtraDetails";
 import Genre from "./Genre";
 
 /* eslint-disable react/prop-types */
 function DetaiContainer({ content, type }) {
+  let vote;
+  if (content.vote_average) {
+    vote = content.vote_average.toFixed(1);
+  }
+  const [isOpen, setIsOpen] = useState(false);
+  const readMoreClicked = () => {
+    setIsOpen((s) => !s);
+  };
   return (
     <>
       <div className="background-img">
@@ -25,7 +34,7 @@ function DetaiContainer({ content, type }) {
             {content.name || content.title || content.original_name}
           </h1>
           <p id="rating">
-            ⭐<span id="ratingVal">{content.vote_average || "N/A"}</span>
+            ⭐<span id="ratingVal">{vote || "N/A"}</span>
             <span id="ratingQty">({content.vote_count})</span>
           </p>
           <section className="type-genre">
@@ -36,10 +45,12 @@ function DetaiContainer({ content, type }) {
           </section>
           <div className="overview-container">
             <h2>Overview</h2>
-            <p id="overview" className="active">
+            <p id="overview" className={isOpen ? null : "active"}>
               {content.overview}
             </p>
-            <button id="readMore">Read More</button>
+            <button id="readMore" onClick={readMoreClicked}>
+              {isOpen ? "Read Less" : "Read More"}
+            </button>
           </div>
           <ExtraDetails content={content} />
         </div>

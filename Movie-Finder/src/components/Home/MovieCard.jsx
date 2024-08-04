@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 export default function MovieCard({ movie, from }) {
-  let type;
+  let type, vote;
   const navigate = useNavigate();
   if (from === "movie") {
     type = "movie";
   } else if (from === "tv") {
     type = "tv";
+  }
+
+  if (movie.vote_average) {
+    vote = movie.vote_average.toFixed(1);
   }
   const goToDetails = (movie) => {
     navigate(`/details/${movie.id}?type=${type}`);
@@ -24,7 +28,7 @@ export default function MovieCard({ movie, from }) {
           </div>
         </div>
       </figure>
-      <span className="movie-rating">⭐{movie.vote_average}</span>
+      <span className="movie-rating">⭐{vote}</span>
       <h3 className="movie-title">{movie.title || movie.name}</h3>
     </div>
   );

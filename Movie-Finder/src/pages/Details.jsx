@@ -5,7 +5,7 @@ import DetaiContainer from "../components/Details/DetaiContainer";
 import Recommendation from "../components/Details/Recommendation";
 import Header from "../components/helper/Header";
 
-import "../../public/details.css";
+import "./details.css";
 import Loader from "../components/helper/Loader";
 
 const API_KEY = "api_key=8c72c95a59121aae424474da628b54d2";

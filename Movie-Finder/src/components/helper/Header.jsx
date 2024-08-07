@@ -37,7 +37,7 @@ function Header() {
     >
       <div className="nav-container">
         <span id="logo">
-          <Link to="/">
+          <Link to={"/"}>
             <img src={Logo} alt="Logo" />
           </Link>
         </span>

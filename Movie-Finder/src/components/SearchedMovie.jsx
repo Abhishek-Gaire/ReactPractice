@@ -6,7 +6,7 @@ function SearchedMovie({ movieDetails, searchItem }) {
     <main>
       <section className="container results">
         <h1>
-          Showing Results for{" "}
+          Showing Results for
           <span id="searchVal">&quot;{searchItem}&quot;</span>
         </h1>
         <div className="movies-container" id="searchResults">

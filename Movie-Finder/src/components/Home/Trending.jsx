@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
-import MovieContainer from "./MovieContainer";
+import Loader from "../helper/Loader";
+import SectionMovieContainer from "./SectionMovieContainer";
+
 const API_KEY = "api_key=8c72c95a59121aae424474da628b54d2";
+
 function Trending() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +13,6 @@ function Trending() {
   useEffect(() => {
     async function fetchInformation() {
       setIsLoading(true);
-
       const response = await fetch(`${url}`);
       const data = await response.json();
       setMovies(data.results);
@@ -19,10 +21,13 @@ function Trending() {
     fetchInformation();
   }, [url]);
   return (
-    <section className="container trending">
-      <h2>Trending Today</h2>
-      <MovieContainer movies={movies} />
-    </section>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <SectionMovieContainer shows={movies} term={"trending"} />
+      )}
+    </>
   );
 }
 

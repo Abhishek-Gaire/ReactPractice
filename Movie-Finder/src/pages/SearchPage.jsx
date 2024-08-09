@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/helper/Header";
 import Loader from "../components//helper/Loader";
 import SearchedMovie from "../components/SearchedMovie";
+import Pagination from "../components/helper/Pagination";
 
 function SearchPage() {
   const MOVIE_SEARCH_URL =
@@ -15,6 +16,19 @@ function SearchPage() {
   const [searchedMovie, setSearchedMovie] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  // This function updates the current page state when called
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = searchedMovie.slice(indexOfFirstItem, indexOfLastItem);
+
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
@@ -37,7 +51,13 @@ function SearchPage() {
       ) : (
         <>
           <Header />
-          <SearchedMovie movieDetails={searchedMovie} searchItem={searchItem} />
+          <SearchedMovie movieDetails={currentItems} searchItem={searchItem} />
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={searchedMovie.length}
+            currentPage={currentPage}
+            paginate={handlePageChange}
+          />
         </>
       )}
     </>
